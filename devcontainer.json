@@ -1,0 +1,64 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "Research Environment",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/github-cli":{
+			"version": "latest"
+		},
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"upgradePackages": true
+		},
+		"ghcr.io/oleksis/devcontainer-features/python-launcher:1": {
+			"version": "latest"
+		}
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// installing just
+	//wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+    //echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+    //sudo apt update
+	"postCreateCommand": "pip3 install -r /workspaces/research_env/.devcontainer/python.pkgs && sudo apt update && xargs sudo apt install -y < /workspaces/research_env/.devcontainer/apt.pkgs",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"yy0931.vscode-sqlite3-editor",
+				"lochbrunner.vscode-hdf5-viewer",
+				"IBM.output-colorizer",
+				"mhutchie.git-graph",
+				"bierner.markdown-checkbox",
+				"DavidAnson.vscode-markdownlint",
+				"mutantdino.resourcemonitor",
+				"GitLab.gitlab-workflow",
+				"GitHub.vscode-pull-request-github",
+				"efoerster.texlab",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-python.vscode-pylance",
+				"ms-python.python"
+			]
+		}
+	},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"mounts": [
+		"source=/home/justus/research_data,target=/data,type=bind,consistency=cached",
+		"source=/home/justus/Nextcloud/Studium/Promotion/ca-expclover/plot_vault,target=/plots/cA_ZA_ZV,type=bind,consistency=cached"
+	]
+}

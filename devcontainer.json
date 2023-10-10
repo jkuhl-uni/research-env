@@ -3,21 +3,7 @@
 {
 	"name": "Research Environment",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-	"features": {
-		"ghcr.io/devcontainers/features/python:1": {
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/github-cli":{
-			"version": "latest"
-		},
-		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
-			"upgradePackages": true
-		},
-		"ghcr.io/oleksis/devcontainer-features/python-launcher:1": {
-			"version": "latest"
-		}
-	},
+	"build": { "dockerfile": "Dockerfile" },
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -30,7 +16,6 @@
 	//wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
     //echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
     //sudo apt update
-	"postCreateCommand": "pip3 install -r /workspaces/research_env/.devcontainer/python.pkgs && sudo apt update && xargs sudo apt install -y < /workspaces/research_env/.devcontainer/apt.pkgs",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {

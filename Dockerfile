@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/base:jammy
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive
-RUN apt-get -y install git software-properties-common wget libffi-dev
+RUN apt-get -y install git software-properties-common wget libffi-dev sqlite3 h5utils gnupg2 libsqlite3-dev
 # install python 3.11.6
 RUN wget https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tar.xz
 RUN tar -xf Python-3.11.6.tar.xz
@@ -23,5 +23,4 @@ RUN apt-get update
 RUN apt upgrade -y
 RUN apt-get -y install just
 # install additional packages
-RUN apt-get -y install h5utils sqlite3 gnupg2
-RUN pip install pyyaml datalad
+RUN pip install pyyaml datalad ipykernel pyerrors

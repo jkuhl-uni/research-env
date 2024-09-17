@@ -1,8 +1,8 @@
 FROM fedora:40
-RUN dnf install -y git-2.45.2-2.fc40.x86_64 wget2-2.1.0-9.fc40.x86_64 sqlite-3.45.1-2.fc40.x86_64 hdf5-1.12.1-15.fc40.x86_64 gnupg2-2.4.4-1.fc40.x86_64
-RUN dnf install -y python3-3.12.3-2.fc40.x86_64 python3-pip-23.3.2-1.fc40.noarch python3-datalad-1.0.1-1.fc40.noarch
+RUN dnf install -y git-2.46.0-1.fc40.x86_64 wget2-2.1.0-11.fc40.x86_64 sqlite-3.45.1-2.fc40.x86_64 hdf5-1.12.1-15.fc40.x86_64 gnupg2-2.4.4-1.fc40.x86_64
+RUN dnf install -y python3-3.12.2-2.fc40.x86_64 python3-pip-23.3.2-1.fc40.noarch python3-datalad-1.1.3-1.fc40.noarch
 RUN dnf install -y just-1.25.2-1.fc40.x86_64
-RUN dnf install -y vim
+RUN dnf install -y vim-common-2:9.1.719-1.fc40.x86_64 vim-data-2:9.1.719-1.fc40.noarch vim-enhanced-2:9.1.719-1.fc40.x86_64 vim-filesystem-2:9.1.719-1.fc40.noarch vim-minimal-2:9.1.719-1.fc40.x86_64
 
 ARG user=researcher
 ARG group=researcher
